@@ -13,9 +13,15 @@ shelfWidth    = 380;
 studsLenght   = shelfWidth
     +(listThickness*2);
 studsHeight   = listWidth/2-10;
-
+studsAmount   = 21;
+studIncrese = (shelfLenght
+    -studsAmount*listThickness)
+    /(studsAmount-1)+listThickness
+    -0.001; 
+    
 storageLenght = shelfLenght;
-storageHeight = 100;
+storageDepth  = 100;
+storageHeight = legLenght-storageDepth;
 storageWidth  = shelfWidth;
 
 lidLenght = shelfLenght+20*2;
@@ -109,8 +115,7 @@ translate([
 // shelf  (better algoritem writ it)
 for(i = [
     legThickness :
-    (legThickness+shelfLenght
-    -listThickness*2)/12 -1.8 : 
+    studIncrese: 
     legThickness+shelfLenght
     -listThickness])
     translate([
@@ -123,7 +128,26 @@ for(i = [
         listWidth]);
 
 // storageFront
+translate([
+    legThickness,
+    listWidth/2-teakPlyThickness/2,
+    storageHeight]) 
+    cube(size = [
+    storageLenght,
+    teakPlyThickness,
+    storageDepth]);
+
 // storageBack
+translate([
+    legThickness,
+    listWidth/2-teakPlyThickness/2
+    +storageWidth+legWidth,
+    storageHeight]) 
+    cube(size = [
+    storageLenght,
+    teakPlyThickness,
+    storageDepth]);
+    
 // storageRight
 // storageLeft
 // storageBottom
