@@ -7,6 +7,8 @@
 totalLenght = 800;
 totalWidth  = 400;
 totalHight  = 450;
+lidExtraLenghtOnEachSide = 20;
+lidExtraWidthOnEachSide  = 10;
 teakPlyThickness  = 18;
 teakPlyThickness2 = 14;
 listThickness     = 15;
@@ -14,22 +16,22 @@ listWidth         = 43;
 smallNumber       = 0.001;
 
 // Leg
-legThickness  =  listThickness*2;
+legThickness  =  21;//listThickness*2;
 legLenght     =  totalHight-teakPlyThickness;
 legWidth      =  listWidth;
 
 // Shelf
-shelfLenght   = totalLenght;
+shelfLenght   = totalLenght
+    -(legThickness*2+lidExtraLenghtOnEachSide*2);
 shelfHeight   = 100;
-shelfWidth    = 294;
+shelfWidth    = totalWidth
+    -(legWidth*2+lidExtraWidthOnEachSide*2);
 
 // Studs 
-studsAmount = 12;
-//studsHeight   = //listWidth/2-10;
+studsAmount = 10;
 studsLenght = shelfWidth+
     listWidth-listThickness;
-//   (listWidth-(listWidth/2+listThickness/2))*2;
-studsWidth  = 50;
+studsWidth  = 52;
 studIncrese = 
     (shelfLenght-studsAmount*studsWidth)
     /(studsAmount-1)
@@ -44,13 +46,8 @@ storageWidth  = shelfWidth+
     listWidth-teakPlyThickness;
 storageBottomLenght = storageLenght-teakPlyThickness*2;
 
-lidExtraLenghtOnEachSide = 20;
-lidExtraWidthOnEachSide  = 10;
-lidLenght = shelfLenght+legThickness*2
-    +lidExtraLenghtOnEachSide*2;
-lidWidth  = shelfWidth+legWidth*2
-    +lidExtraWidthOnEachSide*2; 
-
+lidLenght = totalLenght;  
+lidWidth  = totalWidth;
 
 
 // leg 1
