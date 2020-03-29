@@ -1,31 +1,55 @@
-// not final daimension
-teakPlyThickness = 28;
-listThickness = 20;
-listWidth     = 60;
+/*
+    Shoe Shelf
+    by Anton Augustsson
+*/
 
+// not final daimension
+totalLenght = 800;
+totalWidth  = 400;
+totalHight  = 450;
+teakPlyThickness  = 18;
+teakPlyThickness2 = 14;
+listThickness     = 15;
+listWidth         = 43;
+smallNumber       = 0.001;
+
+// Leg
 legThickness  =  listThickness*2;
-legLenght     =  400;
+legLenght     =  totalHight-teakPlyThickness;
 legWidth      =  listWidth;
 
-shelfLenght   = 950;
+// Shelf
+shelfLenght   = totalLenght;
 shelfHeight   = 100;
-shelfWidth    = 380;
-studsLenght   = shelfWidth
-    +(listThickness*2);
-studsHeight   = listWidth/2-10;
-studsAmount   = 21;
-studIncrese = (shelfLenght
-    -studsAmount*listThickness)
-    /(studsAmount-1)+listThickness
-    -0.001; 
-    
-storageLenght = shelfLenght;
-storageDepth  = 100;
-storageHeight = legLenght-storageDepth;
-storageWidth  = shelfWidth;
+shelfWidth    = 294;
 
-lidLenght = shelfLenght+20*2;
-lidWidth   = shelfWidth+10*2; 
+// Studs 
+studsAmount = 12;
+//studsHeight   = //listWidth/2-10;
+studsLenght = shelfWidth+
+    listWidth-listThickness;
+//   (listWidth-(listWidth/2+listThickness/2))*2;
+studsWidth  = 50;
+studIncrese = 
+    (shelfLenght-studsAmount*studsWidth)
+    /(studsAmount-1)
+    +studsWidth
+    -smallNumber;
+    
+// Storage    
+storageLenght = shelfLenght;
+storageDepth  = 110+teakPlyThickness;
+storageHeight = legLenght-storageDepth;
+storageWidth  = shelfWidth+
+    listWidth-teakPlyThickness;
+storageBottomLenght = storageLenght-teakPlyThickness*2;
+
+lidExtraLenghtOnEachSide = 20;
+lidExtraWidthOnEachSide  = 10;
+lidLenght = shelfLenght+legThickness*2
+    +lidExtraLenghtOnEachSide*2;
+lidWidth  = shelfWidth+legWidth*2
+    +lidExtraWidthOnEachSide*2; 
 
 
 
@@ -52,7 +76,7 @@ translate([
 // leg 3
 translate([
     0,
-    storageWidth+legWidth,
+    shelfWidth+legWidth,
     0]) 
     cube(size = [
     legThickness,
@@ -62,7 +86,7 @@ translate([
 // leg 4
 translate([
     storageLenght+legThickness,
-    storageWidth+legWidth,
+    shelfWidth+legWidth,
     0]) 
     cube(size = [
     legThickness,
@@ -71,6 +95,7 @@ translate([
     
     
 // shelfStabaliserFront
+
 translate([
     legThickness,
     listWidth/2-listThickness/2,
@@ -84,7 +109,7 @@ translate([
 translate([
     legThickness,
     listWidth/2-listThickness/2
-    +storageWidth+legWidth,
+    +shelfWidth+legWidth,
     shelfHeight]) 
     cube(size = [
     shelfLenght,
@@ -112,20 +137,20 @@ translate([
     shelfWidth,
     listWidth]);
     
-// shelf  (better algoritem writ it)
+// shelfLists  
 for(i = [
-    legThickness :
+    legThickness:
     studIncrese: 
     legThickness+shelfLenght
-    -listThickness])
+    -studsWidth])
     translate([
         i,
-        listWidth/2+listThickness/2,
-        shelfHeight]) 
+        listWidth/2+teakPlyThickness2/2,
+        shelfHeight+listWidth-teakPlyThickness2]) 
         cube(size = [
-        listThickness,
+        studsWidth,
         studsLenght,
-        listWidth]);
+        teakPlyThickness2]);
 
 // storageFront
 translate([
@@ -141,7 +166,7 @@ translate([
 translate([
     legThickness,
     listWidth/2-teakPlyThickness/2
-    +storageWidth+legWidth,
+    +shelfWidth+legWidth,
     storageHeight]) 
     cube(size = [
     storageLenght,
@@ -149,8 +174,43 @@ translate([
     storageDepth]);
     
 // storageRight
+translate([
+    legThickness,
+    listWidth/2+teakPlyThickness/2,
+    storageHeight]) 
+    cube(size = [
+    teakPlyThickness,
+    storageWidth,
+    storageDepth]);
+    
 // storageLeft
+translate([
+    legThickness+storageLenght-teakPlyThickness,
+    listWidth/2+teakPlyThickness/2,
+    storageHeight]) 
+    cube(size = [
+    teakPlyThickness,
+    storageWidth,
+    storageDepth]);
+    
 // storageBottom
+translate([
+    legThickness+teakPlyThickness,
+    listWidth/2+teakPlyThickness/2,
+    storageHeight]) 
+    cube(size = [
+    storageBottomLenght,
+    storageWidth,
+    teakPlyThickness]);
+
 
 // lid
-
+translate([
+    -lidExtraLenghtOnEachSide,
+    -lidExtraWidthOnEachSide,
+    storageHeight+storageDepth])
+    cube(size = [
+    lidLenght,
+    lidWidth,
+    teakPlyThickness]);
+    
