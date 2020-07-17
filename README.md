@@ -2,6 +2,8 @@
 Shoe bench with one shelf  and a storige unit for shoe care items. It is made out of tick teak plywood
 and solid teak. 
 
+![shoe-bench](shoe-bench.png)
+
 ## BOM
 * Teak plywood 
 * list teak 

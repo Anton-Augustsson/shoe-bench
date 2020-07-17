@@ -44,12 +44,16 @@ storageDepth  = 110+teakPlyThickness;
 storageHeight = legLenght-storageDepth;
 storageWidth  = shelfWidth+
     listWidth-teakPlyThickness;
-storageBottomLenght = storageLenght-teakPlyThickness*2;
+storageBottomLenght = storageLenght
+    -teakPlyThickness*2;
 
 lidLenght = totalLenght;  
 lidWidth  = totalWidth;
 
 
+// --------------- Code ---------------
+color("Wheat")
+union () {
 // leg 1
 translate([
     0,
@@ -148,7 +152,10 @@ for(i = [
         studsWidth,
         studsLenght,
         teakPlyThickness2]);
+}
 
+color("Tan")
+union () {
 // storageFront
 translate([
     legThickness,
@@ -199,8 +206,10 @@ translate([
     storageBottomLenght,
     storageWidth,
     teakPlyThickness]);
+}
 
-
+color("Wheat")
+union () {
 // lid
 translate([
     -lidExtraLenghtOnEachSide,
@@ -210,4 +219,4 @@ translate([
     lidLenght,
     lidWidth,
     teakPlyThickness]);
-    
+}
